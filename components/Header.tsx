@@ -32,7 +32,7 @@ export function Header() {
             className="rounded-full"
             asChild
           >
-            <LogoutLink>
+            <LogoutLink postLogoutRedirectURL="/login">
               <LogOut />
             </LogoutLink>
           </Button>
