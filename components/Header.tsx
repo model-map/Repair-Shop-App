@@ -1,4 +1,4 @@
-import { HomeIcon, File, UserRound, User, LogOut } from "lucide-react";
+import { HomeIcon, File, UserRound, LogOut } from "lucide-react";
 import Link from "next/link";
 import { NavButton } from "@/components/NavButton";
 import { ModeToggle } from "./ModeToggle";

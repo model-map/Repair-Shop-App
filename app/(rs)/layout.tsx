@@ -1,5 +1,4 @@
 import { Header } from "@/components/Header";
-import Navbar02Page from "@/components/navbar-02/navbar-02";
 
 export default async function RSLayout({
   children,

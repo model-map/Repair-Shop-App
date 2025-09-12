@@ -1,7 +1,7 @@
 import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 
 export default withAuth(
-  async function middleware(req: NextRequest) {
+  async function middleware(_req: NextRequest) {
     // console.log("look at me", req.kindeAuth);
   },
   {
