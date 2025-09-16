@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import * as Sentry from "@sentry/nextjs";
 
-export default async function GetTicket(ticketId: number) {
+export default async function getTicket(ticketId: number) {
   try {
     const ticket = await prisma.tickets.findUnique({
       where: { id: ticketId },

@@ -1,7 +1,7 @@
 import { BackButton } from "@/components/BackButton";
-import { Customers } from "@/generated/prisma";
-import GetAllCustomers from "@/lib/queries/getAllCustomers";
 import getCustomer from "@/lib/queries/getCustomer";
+import * as Sentry from "@sentry/nextjs";
+import CustomerForm from "@/app/(rs)/customers/form/CustomerForm";
 
 type Props = {
   //   searchParams?: Promise<{ [key: string]: string | undefined }>;
@@ -28,11 +28,14 @@ export default async function CustomerFormPage({ searchParams }: Props) {
         );
       }
       //put customer form component
+      return <CustomerForm customer={customer} />;
     } else {
       // new customer form component
+      return <CustomerForm />;
     }
   } catch (error) {
     if (error instanceof Error) {
+      Sentry.captureException(error);
       throw error;
     }
   }
