@@ -8,6 +8,7 @@ export const CustomersSchema = z.object({
   phone: z.string(),
   address1: z.string(),
   address2: z.string().nullish(),
+  city: z.string(),
   state: z.string(),
   zip: z.string(),
   notes: z.string().nullish(),

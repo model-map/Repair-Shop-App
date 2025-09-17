@@ -1,14 +1,13 @@
 import { z } from "zod";
 
-export const TicketsInputSchema = z
-  .object({
-    id: z.union([z.number(), z.literal("(New)")]),
+// prettier-ignore
+export const TicketsInputSchema = z.object({
+    id: z.union([z.number().int(),z.string()]),
     customerId: z.number().int(),
-    title: z.string().min(1, "Title is required"),
-    description: z.string().min(1, "Description is required"),
+    title: z.string().min(1,"Title is required"),
+    description: z.string().optional().nullable(),
     completed: z.boolean(),
-    tech: z.email("Invalid email address"),
-  })
-  .strict();
+    tech: z.string(),
+}).strict();
 
 export type TicketsInputType = z.infer<typeof TicketsInputSchema>;

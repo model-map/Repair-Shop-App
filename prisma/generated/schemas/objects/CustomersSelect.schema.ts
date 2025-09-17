@@ -11,6 +11,7 @@ const makeSchema = () => z.object({
   phone: z.boolean().optional(),
   address1: z.boolean().optional(),
   address2: z.boolean().optional(),
+  city: z.boolean().optional(),
   state: z.boolean().optional(),
   zip: z.boolean().optional(),
   notes: z.boolean().optional(),

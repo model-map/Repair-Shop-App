@@ -8,9 +8,6 @@ export const TicketsResultSchema = z.object({
     description: z.string().nullable(),
     completed: z.boolean(),
     tech: z.string(),
-    // createdAt: z.date(),
-    // updatedAt: z.date(),
-    // customer: z.unknown()
 }).strict();
 
 export type TicketsResultType = z.infer<typeof TicketsResultSchema>;

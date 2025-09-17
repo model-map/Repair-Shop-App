@@ -9,6 +9,7 @@ const makeSchema = () => z.object({
   phone: z.string().max(13),
   address1: z.string().max(255),
   address2: z.string().max(255).optional().nullable(),
+  city: z.string().max(255),
   state: z.string().max(2),
   zip: z.string().max(6),
   notes: z.string().optional().nullable(),

@@ -7,6 +7,7 @@ export const CustomersUpdateResultSchema = z.nullable(z.object({
   phone: z.string(),
   address1: z.string(),
   address2: z.string().optional(),
+  city: z.string(),
   state: z.string(),
   zip: z.string(),
   notes: z.string().optional(),

@@ -9,6 +9,7 @@ export const CustomersModelSchema = z.object({
     phone: z.string(),
     address1: z.string(),
     address2: z.string().nullable(),
+    city: z.string(),
     state: z.string(),
     zip: z.string(),
     notes: z.string().nullable(),

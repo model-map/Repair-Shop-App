@@ -18,6 +18,7 @@ const customerswhereinputSchema = z.object({
   phone: z.union([z.lazy(() => StringFilterObjectSchema), z.string().max(13)]).optional(),
   address1: z.union([z.lazy(() => StringFilterObjectSchema), z.string().max(255)]).optional(),
   address2: z.union([z.lazy(() => StringNullableFilterObjectSchema), z.string().max(255)]).optional().nullable(),
+  city: z.union([z.lazy(() => StringFilterObjectSchema), z.string().max(255)]).optional(),
   state: z.union([z.lazy(() => StringFilterObjectSchema), z.string().max(2)]).optional(),
   zip: z.union([z.lazy(() => StringFilterObjectSchema), z.string().max(6)]).optional(),
   notes: z.union([z.lazy(() => StringNullableFilterObjectSchema), z.string()]).optional().nullable(),

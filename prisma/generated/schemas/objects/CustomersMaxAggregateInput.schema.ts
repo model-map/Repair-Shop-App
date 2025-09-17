@@ -10,6 +10,7 @@ const makeSchema = () => z.object({
   phone: z.literal(true).optional(),
   address1: z.literal(true).optional(),
   address2: z.literal(true).optional(),
+  city: z.literal(true).optional(),
   state: z.literal(true).optional(),
   zip: z.literal(true).optional(),
   notes: z.literal(true).optional(),

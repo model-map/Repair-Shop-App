@@ -13,6 +13,7 @@ const makeSchema = () => z.object({
   phone: z.union([z.string().max(13), z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(),
   address1: z.union([z.string().max(255), z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(),
   address2: z.union([z.string().max(255), z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema)]).optional().nullable(),
+  city: z.union([z.string().max(255), z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(),
   state: z.union([z.string().max(2), z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(),
   zip: z.union([z.string().max(6), z.lazy(() => StringFieldUpdateOperationsInputObjectSchema)]).optional(),
   notes: z.union([z.string(), z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema)]).optional().nullable(),

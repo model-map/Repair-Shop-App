@@ -10,6 +10,7 @@ const makeSchema = () => z.object({
   phone: SortOrderSchema.optional(),
   address1: SortOrderSchema.optional(),
   address2: SortOrderSchema.optional(),
+  city: SortOrderSchema.optional(),
   state: SortOrderSchema.optional(),
   zip: SortOrderSchema.optional(),
   notes: SortOrderSchema.optional(),

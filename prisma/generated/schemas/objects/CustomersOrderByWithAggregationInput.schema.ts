@@ -16,6 +16,7 @@ const makeSchema = () => z.object({
   phone: SortOrderSchema.optional(),
   address1: SortOrderSchema.optional(),
   address2: z.union([SortOrderSchema, z.lazy(() => SortOrderInputObjectSchema)]).optional(),
+  city: SortOrderSchema.optional(),
   state: SortOrderSchema.optional(),
   zip: SortOrderSchema.optional(),
   notes: z.union([SortOrderSchema, z.lazy(() => SortOrderInputObjectSchema)]).optional(),

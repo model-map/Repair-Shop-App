@@ -9,9 +9,9 @@ generator client {
   output   = "../generated/prisma"
 }
 
-generator zod {
-  provider = "prisma-zod-generator"
-}
+// generator zod {
+//   provider = "prisma-zod-generator"
+// }
 
 datasource db {
   provider = "postgresql"
@@ -26,6 +26,7 @@ model Customers {
   phone     String    @db.VarChar(13) // Indian Phone Number
   address1  String    @db.VarChar(255)
   address2  String?   @db.VarChar(255)
+  city      String    @db.VarChar(255)
   state     String    @db.VarChar(2)
   zip       String    @db.VarChar(6) // INDIAN ZIP CODE
   notes     String?
