@@ -1,6 +1,6 @@
 "use client";
 
-import { Form } from "@/components/ui/form";
+import { Form, FormLabel } from "@/components/ui/form";
 import {
   CustomersInputSchema,
   CustomersInputType,
@@ -11,6 +11,9 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
+import SelectStatesList from "./SelectStatesList";
+import SelectWithLabel from "@/components/inputs/SelectWithLabel";
+import { StatesArray } from "@/constants/StatesArray";
 
 type Props = {
   customer?: CustomersResultType;
@@ -38,7 +41,9 @@ export default function CustomerForm({ customer }: Props) {
     defaultValues,
   });
 
-  async function submitForm(data: CustomersInputType) {}
+  async function submitForm(data: CustomersInputType) {
+    console.log(data);
+  }
 
   return (
     <div className="flex flex-col gap-4 md:px-8">
@@ -58,37 +63,17 @@ export default function CustomerForm({ customer }: Props) {
                 fieldTitle="First Name"
                 fieldDescription="Enter First Name"
               />
-              {/* FIELD : ADDRESS 2 */}
-              <InputWithLabel<CustomersInputType>
-                nameInSchema="address2"
-                fieldTitle="Address 2"
-                fieldDescription="Address Line 2"
-              />
-
               {/* FIELD : LAST NAME */}
               <InputWithLabel<CustomersInputType>
                 nameInSchema="lastName"
                 fieldTitle="Last Name"
                 fieldDescription="Enter Last Name"
               />
-              {/* FIELD : CITY */}
-              <InputWithLabel<CustomersInputType>
-                nameInSchema="city"
-                fieldTitle="City"
-                fieldDescription="Enter city here"
-              />
-
               {/* FIELD : EMAIL */}
               <InputWithLabel<CustomersInputType>
                 nameInSchema="email"
                 fieldTitle="Email"
                 fieldDescription="Enter email here"
-              />
-              {/* FIELD : STATE */}
-              <InputWithLabel<CustomersInputType>
-                nameInSchema="state"
-                fieldTitle="State"
-                fieldDescription="Enter State here"
               />
 
               {/* FIELD : PHONE */}
@@ -97,13 +82,6 @@ export default function CustomerForm({ customer }: Props) {
                 fieldTitle="Phone Number"
                 fieldDescription="XXXX-XXX-XXX"
               />
-              {/* FIELD : ZIP */}
-              <InputWithLabel<CustomersInputType>
-                nameInSchema="zip"
-                fieldTitle="Zip code"
-                fieldDescription="XXXXXX"
-              />
-
               {/* FIELD : ADDRESS 1 (FULL WIDTH) */}
               <InputWithLabel<CustomersInputType>
                 nameInSchema="address1"
@@ -111,12 +89,44 @@ export default function CustomerForm({ customer }: Props) {
                 fieldDescription="Enter your address"
                 className="col-span-2"
               />
+              {/* FIELD : ADDRESS 2 */}
+              <InputWithLabel<CustomersInputType>
+                nameInSchema="address2"
+                fieldTitle="Address 2"
+                fieldDescription="Address Line 2"
+              />
+
+              {/* FIELD : CITY */}
+              <InputWithLabel<CustomersInputType>
+                nameInSchema="city"
+                fieldTitle="City"
+                fieldDescription="Enter city here"
+              />
+
+              {/* FIELD : STATE */}
+              {/* <InputWithLabel<CustomersInputType>
+                nameInSchema="state"
+                fieldTitle="State"
+                fieldDescription="Enter State here"
+              /> */}
+              <SelectWithLabel
+                nameInSchema="state"
+                fieldTitle="State"
+                data={StatesArray}
+              />
+              {/* FIELD : ZIP */}
+              <InputWithLabel<CustomersInputType>
+                nameInSchema="zip"
+                fieldTitle="Zip code"
+                fieldDescription="XXXXXX"
+              />
+
               {/* NOTES */}
               <TextAreaWithLabel<CustomersInputType>
                 nameInSchema="notes"
                 fieldTitle="Notes"
                 fieldDescription="Enter your notes"
-                className="col-span-2"
+                className="col-span-2 h-20"
               />
             </div>
             {/* BUTTONS */}
