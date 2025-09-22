@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
-import SelectStatesList from "./SelectStatesList";
 import SelectWithLabel from "@/components/inputs/SelectWithLabel";
 import { StatesArray } from "@/constants/StatesArray";
 
