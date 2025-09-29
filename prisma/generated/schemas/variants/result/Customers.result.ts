@@ -16,4 +16,7 @@ export const CustomersResultSchema = z.object({
     active: z.boolean(),
 }).strict();
 
-export type CustomersResultType = z.infer<typeof CustomersResultSchema>;
+export type CustomersResultType = z.infer<typeof CustomersResultSchema> & {
+  createdAt?: Date;
+  updatedAt?: Date;
+};

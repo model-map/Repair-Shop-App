@@ -1,24 +1,41 @@
 "use client";
 
-import { Form, FormLabel } from "@/components/ui/form";
+// IMPORTS : SCHEMA TYPES
 import {
   CustomersInputSchema,
   CustomersInputType,
   CustomersResultType,
 } from "@/prisma/generated/schemas";
+
+// IMPORTS : FORM SPECIFIC
+import { Form, FormLabel } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
+// IMPORTS : SHADCN COMPONENTS
 import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/inputs/InputWithLabel";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
 import SelectWithLabel from "@/components/inputs/SelectWithLabel";
+import { CheckboxWithLabel } from "@/components/inputs/CheckboxWithLabel";
+
+// IMPORTS : DATA
 import { StatesArray } from "@/constants/StatesArray";
 
+// IMPORTS : KINDE AUTH
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { Suspense } from "react";
+
+// DEFINING TYPES
 type Props = {
   customer?: CustomersResultType;
 };
 
+// EXPORTING COMPONENT
 export default function CustomerForm({ customer }: Props) {
+  const { getPermission, isLoading } = useKindeBrowserClient();
+  const isManager = !isLoading && getPermission("manager")?.isGranted;
+
   const defaultValues: CustomersInputType = {
     id: customer?.id ?? 0,
     firstName: customer?.firstName ?? "",
@@ -31,7 +48,7 @@ export default function CustomerForm({ customer }: Props) {
     state: customer?.state ?? "",
     zip: customer?.state ?? "",
     notes: customer?.notes ?? "",
-    active: customer?.active ?? false,
+    active: customer?.active ?? true,
   };
 
   const form = useForm<CustomersInputType>({
@@ -47,7 +64,10 @@ export default function CustomerForm({ customer }: Props) {
   return (
     <div className="flex flex-col gap-4 md:px-8">
       <div className="font-bold text-2xl">
-        <h2>{customer?.id ? "Edit" : "New"} Customer Form</h2>
+        <h2>
+          {customer?.id ? "Edit" : "New"} Customer{" "}
+          {customer?.id ? `#${customer?.id}` : "Form"}
+        </h2>
       </div>
       <Form {...form}>
         <form
@@ -103,11 +123,6 @@ export default function CustomerForm({ customer }: Props) {
               />
 
               {/* FIELD : STATE */}
-              {/* <InputWithLabel<CustomersInputType>
-                nameInSchema="state"
-                fieldTitle="State"
-                fieldDescription="Enter State here"
-              /> */}
               <SelectWithLabel
                 nameInSchema="state"
                 fieldTitle="State"
@@ -127,6 +142,16 @@ export default function CustomerForm({ customer }: Props) {
                 fieldDescription="Enter your notes"
                 className="col-span-2 h-20"
               />
+              {/* FIELD : ACTIVE CHECKBOX */}
+              <Suspense fallback={<p>Loading...</p>}>
+                {isManager && customer?.id ? (
+                  <CheckboxWithLabel<CustomersInputType>
+                    fieldTitle="Active"
+                    nameInSchema="active"
+                    message="Yes"
+                  />
+                ) : null}
+              </Suspense>
             </div>
             {/* BUTTONS */}
             {/* BUTTONS */}

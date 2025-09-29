@@ -20,6 +20,7 @@ type Props<S> = {
   message: string;
   fieldDescription?: string;
   nameInSchema: keyof S & string;
+  disabled?: boolean;
   className?: string;
 };
 
@@ -29,6 +30,7 @@ export function CheckboxWithLabel<S>({
   fieldDescription,
   nameInSchema,
   className,
+  disabled = false,
 }: Props<S>) {
   const form = useFormContext();
 
@@ -51,6 +53,7 @@ export function CheckboxWithLabel<S>({
                 checked={field.value}
                 {...field}
                 onCheckedChange={field.onChange}
+                disabled={disabled}
               />
             </FormControl>
             {message}

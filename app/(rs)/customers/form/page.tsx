@@ -3,19 +3,35 @@ import getCustomer from "@/lib/queries/getCustomer";
 import * as Sentry from "@sentry/nextjs";
 import CustomerForm from "@/app/(rs)/customers/form/CustomerForm";
 
+// -------- SETTING METADATA
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  let title = "";
+  const { customerId } = await searchParams;
+  if (!customerId) {
+    title = "New Customer";
+  } else {
+    title = `Edit Customer #${customerId}`;
+  }
+  return { title };
+}
+
+// -------- DEFINING PROPS
 type Props = {
   //   searchParams?: Promise<{ [key: string]: string | undefined }>;
   searchParams: Promise<{ customerId: string }>;
 };
 
+// -------- EXPORTING COMPONENT
 export default async function CustomerFormPage({ searchParams }: Props) {
   try {
     const { customerId } = await searchParams;
-    console.log("Customer ID: ", { customerId: customerId });
     if (customerId) {
       const customer = await getCustomer(parseInt(customerId));
 
-      console.log("Customer", { customer: customer });
       // Edit customer form
       if (!customer) {
         return (
